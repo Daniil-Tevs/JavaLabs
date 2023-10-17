@@ -1,0 +1,5 @@
+ttt2
+3x3
+S S S
+S V S
+V V V
