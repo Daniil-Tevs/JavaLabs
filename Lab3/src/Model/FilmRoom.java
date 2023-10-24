@@ -24,10 +24,23 @@ public class FilmRoom {
         }
 
         for (int[] vipPlace:vipPlaces) {
-            if(vipPlace[0] < filmRoomWidth && vipPlace[1] < filmRoomHeight)
-                filmRoomChairs[vipPlace[0]][vipPlace[1]] = 'V';
+            if(vipPlace[0] - 1 < filmRoomWidth && vipPlace[1] - 1 < filmRoomHeight)
+                filmRoomChairs[vipPlace[0]-1][vipPlace[1]-1] = 'V';
         }
     }
+
+    @Override
+    public String toString() {
+        String outputClass = "hall " + filmRoomId + "\n" + filmRoomWidth + 'x' + filmRoomHeight + "\n";
+        for (int i = 0; i < filmRoomHeight ; i++) {
+            for (int j = 0; j < filmRoomWidth; j++) {
+                outputClass += filmRoomChairs[j][i] + " ";
+            }
+            outputClass += "\n";
+        }
+        return outputClass;
+    }
+
     public String getSize() {
         return  Integer.toString(filmRoomWidth) + 'x' + Integer.toString(filmRoomHeight);
     }

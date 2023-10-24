@@ -9,8 +9,8 @@ public class App {
     private static final Scanner scanner = new Scanner(System.in);
 
     private static final FileRepository repo = new FileRepository("data/user.txt","data/admin.txt",
-            "data/cinema/","data/room/","/data/movie.txt");
-
+            "data/cinema/","data/room/","data/film.txt",
+            "data/sessions.txt","data/schedule.txt");
     static List<User> userList;
     static List<Admin> adminList;
 
@@ -24,9 +24,9 @@ public class App {
 
     static private String[] getLoginData(){
         String[] loginData = new String[2];
-        System.out.println("Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ");
+        System.out.println("Введите логин");
         String login = scanner.next();
-        System.out.println("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ");
+        System.out.println("Введите пароль");
         String password = scanner.next();
 
         loginData[0] = login;
@@ -42,7 +42,6 @@ public class App {
             if (user.login(loginData[0], loginData[1]))
                 return user;
         }
-
         return null;
     }
 
@@ -58,18 +57,18 @@ public class App {
     }
 
     static private User registration() {
-        System.out.println("\n**************************\nР РµРіРёСЃС‚СЂР°С†РёСЏ\n");
-        System.out.println("Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ");
+        System.out.println("\n**************************\nРегистрация\n");
+        System.out.println("Введите логин");
         String login = scanner.next();
 
         for (int i = 0; i < userList.size(); i++) {
             if(userList.get(i).getLogin().equals(login)) {
-                System.out.println("Р›РѕРіРёРЅ СѓР¶Рµ Р·Р°РЅСЏС‚");
+                System.out.println("Данный логин уже занят");
                 return null;
             }
         }
 
-        System.out.println("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ");
+        System.out.println("Введите пароль");
         String password = scanner.next();
 
         User user = new User(login,password);
@@ -85,18 +84,18 @@ public class App {
     public static void start(){
         getData();
 
-        System.out.println("Р’Р°СЃ РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ СЃРµС‚СЊ РєРёРЅРѕС‚РµР°С‚СЂРѕРІ\nР’С‹Р±РµСЂРµС‚Рµ РѕРїРµСЂР°С†РёСЋ:\n1) Р’С…РѕРґ\n2) Р РµРіРёСЃС‚СЂР°С†РёСЏ");
+        System.out.println("Вас приветствует сеть кинотеатров 'DTP'\nСписок операций:\n1) Вход\n2) Регистрация");
 
         switch (scanner.nextInt()) {
             case 1 -> {
                 User user = login();
                 if (user != null)
-                    System.out.println("user");
+                    UserHandler.startHandle(repo);
             }
             case 2 -> {
                 User user = registration();
                 if (user != null)
-                    System.out.println("newUser");
+                    UserHandler.startHandle(repo);
             }
 
             case 999 -> {

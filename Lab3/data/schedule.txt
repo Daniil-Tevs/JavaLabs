@@ -1,0 +1,56 @@
+date~29.10.2023
+10:30
+e9c640c1-ad11-4f03-a473-4dde91b03adb
+false
+1:1 2:1 3:1 3:3 
+VVVVV
+false
+1:2 1:3 
+end
+13:00
+TTTTT
+false
+1:2 1:3 
+STSTS
+false
+1:2 1:3 
+end
+14:00
+VVVVV
+false
+1:2 1:3 
+TTTTT
+false
+1:2 1:3 
+STSTS
+true
+1:2 1:3 
+end
+endTime
+date~26.10.2023
+08:30
+e9c640c1-ad11-4f03-a473-4dde91b03adb
+false
+empty
+end
+endTime
+date~22.10.2023
+09:30
+TTTTT
+false
+1:2 1:3 
+VVVVV
+false
+2:2 2:3 
+end
+13:00
+TTTTT
+false
+1:2 1:3 
+end
+14:00
+VVVVV
+false
+1:2 1:3 
+end
+endTime

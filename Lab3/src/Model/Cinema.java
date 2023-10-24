@@ -27,4 +27,13 @@ public class Cinema {
     public List<FilmRoom> getFilmRooms() {
         return filmRooms;
     }
+
+    @Override
+    public String toString() {
+        String output = "cinema " + cinemaName + "\n";
+        for (FilmRoom filmRoom: filmRooms) {
+            output += filmRoom.toString();
+        }
+        return output;
+    }
 }
