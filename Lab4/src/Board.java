@@ -54,15 +54,6 @@ public class Board {
         };
     }
 
-    public void initTest() {
-        this.fields[3][2] = new King("K", 'w');
-        this.fields[5][4] = new Bishop("B", 'w');
-
-        this.fields[4][3] = new Queen("Q", 'w');
-        this.fields[2][2] = new Pawn("P", 'w');
-        this.fields[3][4] = new King("K", 'b');
-    }
-
     public String getCell(int row, int col) {
         Figure figure = this.fields[row][col];
         if (figure == null) {
