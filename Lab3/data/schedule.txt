@@ -2,10 +2,10 @@ date~29.10.2023
 10:30
 e9c640c1-ad11-4f03-a473-4dde91b03adb
 false
-1:1 2:1 3:1 3:3 
+2:2 
 VVVVV
 false
-1:2 1:3 
+1:2 1:3 1:1 0:1 
 end
 13:00
 TTTTT

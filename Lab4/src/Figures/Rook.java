@@ -29,34 +29,6 @@ public class Rook extends Figure{
                 }
             }
 
-            if( row < row1){
-                if(col < col1){
-                    for(int i = row + 1, j = col + 1 ; i < row1 && j < col1 ; i++, j++ ) {
-                        if(fields[i][j] != null)
-                            return false;
-                    }
-                }
-                else {
-                    for(int i = row + 1, j = col - 1 ; i < row1 && j > col1 ; i++, j-- ) {
-                        if(fields[i][j] != null)
-                            return false;
-                    }
-                }
-            }
-            if( row > row1) {
-                if(col < col1){
-                    for(int i = row - 1, j = col + 1 ; i > row1 && j < col1 ; i--, j++ ) {
-                        if(fields[i][j] != null)
-                            return false;
-                    }
-                }
-                else {
-                    for(int i = row - 1, j = col - 1 ; i > row1 && j > col1 ; i--, j-- ) {
-                        if(fields[i][j] != null)
-                            return false;
-                    }
-                }
-            }
             return (col == col1) || (row == row1);
         }
 

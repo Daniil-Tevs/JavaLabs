@@ -7,15 +7,11 @@ import java.util.*;
 
 public class App {
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final FileRepository repo = new FileRepository("data/user.txt","data/admin.txt",
             "data/cinema/","data/room/","data/film.txt",
             "data/sessions.txt","data/schedule.txt");
     static List<User> userList;
     static List<Admin> adminList;
-
-    static boolean isLogin = false;
-    static boolean isAdmin = false;
 
     private static void getData(){
         userList = repo.getUserList();
