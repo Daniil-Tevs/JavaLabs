@@ -7,24 +7,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-radius: 5; -fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-radius: 5; -fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.SecondController">
    <children>
-      <Button layoutX="362.0" layoutY="52.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Catalog">
+      <Button layoutX="362.0" layoutY="74.0" mnemonicParsing="false" onAction="#onCatalogButtonClicked" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Catalog">
          <font>
             <Font name="Baskerville Old Face" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="362.0" layoutY="129.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Generate movie">
+      <Button layoutX="362.0" layoutY="137.0" mnemonicParsing="false" onAction="#onMovieGenerateButtonClicked" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Generate movie">
          <font>
             <Font name="Baskerville Old Face" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="362.0" layoutY="208.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Catch the mood">
+      <Button layoutX="362.0" layoutY="202.0" mnemonicParsing="false" onAction="#onCatchMoodButtonClicked" prefHeight="44.0" prefWidth="185.0" style="-fx-background-color: #ead2a0;" text="Catch the mood">
          <font>
             <Font name="Baskerville Old Face" size="24.0" />
          </font>
       </Button>
-      <Pane layoutY="320.0" prefHeight="330.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;" />
+      <Pane layoutY="320.0" prefHeight="338.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <Text fill="#c19664" layoutX="6.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try film of the mounth" wrappingWidth="311.7367630004883">
+               <font>
+                  <Font name="Algerian" size="24.0" />
+               </font>
+            </Text>
+         </children></Pane>
       <ImageView fitHeight="330.0" fitWidth="320.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@second.jpeg" />
@@ -45,5 +52,10 @@
             <Font size="9.0" />
          </font>
       </Text>
+      <Button layoutX="509.0" layoutY="29.0" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="25.0" prefWidth="38.0" style="-fx-background-color: #ead2a0;" text="←">
+         <font>
+            <Font name="Baskerville Old Face" size="14.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
