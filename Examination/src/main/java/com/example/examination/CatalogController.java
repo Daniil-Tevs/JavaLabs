@@ -4,11 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Accordion;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import java.io.IOException;
@@ -67,5 +65,8 @@ public class CatalogController {
         yearChoiceBox.setItems(years);
         genreChoiceBox.setItems(genres);
         countryChoiceBox.setItems(countries);
+
     }
+
+
 }
