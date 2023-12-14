@@ -28,8 +28,8 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TextField layoutX="14.0" layoutY="58.0" prefHeight="42.0" prefWidth="428.0" promptText="Enter the movie" style="-fx-background-color: #fffbf7;" />
-      <Button layoutX="449.0" layoutY="58.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #ead2a0;">
+      <TextField  fx:id="movieSearch" layoutX="14.0" layoutY="58.0" prefHeight="42.0" prefWidth="428.0" promptText="Enter the movie" style="-fx-background-color: #fffbf7;" />
+      <Button  onAction="#onFilterButton" layoutX="449.0" layoutY="58.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #ead2a0;">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,31 +44,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ScrollPane layoutY="165.0" prefHeight="487.0" prefWidth="580.0" style="-fx-background-color: black;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="578.0" style="-fx-background-color: #2e2e2e;">
-               <children>
-                  <VBox layoutY="1.0" prefHeight="470.0" prefWidth="565.0">
-                     <children>
-                        <HBox prefHeight="226.0" prefWidth="530.0">
-                           <children>
-                              <ImageView fitHeight="164.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" />
-                              <Text fill="#ffedcd" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="84.35395812988281">
-                                 <font>
-                                    <Font name="Bernard MT Condensed" size="24.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#f3f2d6" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-                                 <font>
-                                    <Font name="Bernard MT Condensed" size="14.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children></AnchorPane>
-        </content>
+      <ScrollPane fx:id="scrollPaneMovies" layoutY="165.0" prefHeight="487.0" prefWidth="580.0" style="-fx-background-color: black;">
       </ScrollPane>
       <TitledPane animated="false" expanded="false" layoutX="14.0" layoutY="118.0" prefHeight="206.0" prefWidth="428.0" text="Filter">
          <content>
@@ -79,12 +55,12 @@
                         <Font name="Arial Rounded MT Bold" size="16.0" />
                      </font></Label>
                   <ChoiceBox fx:id="yearChoiceBox" prefHeight="26.0" prefWidth="414.0" />
-                  <Label layoutX="455.0" layoutY="120.0" prefHeight="18.0" prefWidth="70.0" text="Country:">
+                  <Label layoutX="455.0" layoutY="120.0" prefHeight="18.0" prefWidth="70.0" text="Genre:">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font></Label>
                   <ChoiceBox fx:id="genreChoiceBox" prefHeight="26.0" prefWidth="414.0" />
-                  <Label layoutX="455.0" layoutY="120.0" text="Genre:">
+                  <Label layoutX="455.0" layoutY="120.0" text="Country:">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font></Label>
