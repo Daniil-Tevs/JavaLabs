@@ -82,7 +82,6 @@ public class CatalogController {
 
 
     public void initialize() {
-
         List<String> yearsCommands = new ArrayList<>(){};
         yearsCommands.add("Все");
         yearsCommands.addAll(Database.getYearList());
@@ -117,6 +116,7 @@ public class CatalogController {
         List<Movie> movieList = Database.getMovieList();
         VBox cardsContainer = new VBox();
         cardsContainer.setSpacing(20);
+        cardsContainer.setPrefWidth(580);
 
         for (Movie movie : movieList) {
             HBox card = createMovieCard(movie);

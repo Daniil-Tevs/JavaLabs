@@ -9,15 +9,12 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.CatalogController">
+<Pane maxHeight="-Infinity" maxWidth="580.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.CatalogController">
    <children>
       <Region prefHeight="165.0" prefWidth="580.0" style="-fx-background-color: #1b1b1b;" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonClicked" style="-fx-background-color: #ead2a0;" text="←">
@@ -28,8 +25,8 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TextField  fx:id="movieSearch" layoutX="14.0" layoutY="58.0" prefHeight="42.0" prefWidth="428.0" promptText="Enter the movie" style="-fx-background-color: #fffbf7;" />
-      <Button  onAction="#onFilterButton" layoutX="449.0" layoutY="58.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #ead2a0;">
+      <TextField fx:id="movieSearch" layoutX="14.0" layoutY="58.0" prefHeight="42.0" prefWidth="428.0" promptText="Enter the movie" style="-fx-background-color: #fffbf7;" />
+      <Button layoutX="449.0" layoutY="58.0" mnemonicParsing="false" onAction="#onFilterButton" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #ead2a0;">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +41,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ScrollPane fx:id="scrollPaneMovies" layoutY="165.0" prefHeight="487.0" prefWidth="580.0" style="-fx-background-color: black;">
+      <ScrollPane fx:id="scrollPaneMovies" layoutY="165.0" maxWidth="580.0" prefHeight="487.0" prefWidth="580.0" style="-fx-background-color: black;">
       </ScrollPane>
       <TitledPane animated="false" expanded="false" layoutX="14.0" layoutY="118.0" prefHeight="206.0" prefWidth="428.0" text="Filter">
          <content>

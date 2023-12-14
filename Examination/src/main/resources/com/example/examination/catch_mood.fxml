@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.examination.CatchMoodController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.CatchMoodController">
+   <children>
+      <Pane layoutX="370.0" prefHeight="650.0" prefWidth="210.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <Text fill="#c19664" layoutX="21.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+               <font>
+                  <Font name="Algerian" size="24.0" />
+               </font>
+            </Text>
+            <RadioButton layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="137.0" text="New Year" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="14.0" layoutY="131.0" mnemonicParsing="false" text="Birthday" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="12.0" layoutY="239.0" mnemonicParsing="false" text="Summer" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="14.0" layoutY="186.0" mnemonicParsing="false" text="Autumn" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="11.0" layoutY="289.0" mnemonicParsing="false" text="Spring" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="10.0" layoutY="340.0" mnemonicParsing="false" text="Winter" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="10.0" layoutY="390.0" mnemonicParsing="false" text="Haloween" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton layoutX="9.0" layoutY="438.0" mnemonicParsing="false" text="Christmas" textFill="#ffedcd">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+         </children>
+      </Pane>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonClicked" style="-fx-background-color: #ead2a0;" text="←">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text fill="#c19664" layoutX="97.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch the mood">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#f3f2d6" layoutX="33.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find the category of film which suits your mood right now" wrappingWidth="320.81636962890616">
+         <font>
+            <Font name="Bernard MT Condensed" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
