@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.examination.GenerateController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.GenerateController">
+   <children>
+      <Pane prefHeight="325.0" prefWidth="580.0" style="-fx-background-color: #1b1b1b;">
+         <children>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonClicked" style="-fx-background-color: #ead2a0;" text="←">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Text fill="#c19664" layoutX="143.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate film for both">
+               <font>
+                  <Font name="Algerian" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="#ffedcd" layoutX="43.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your idea" wrappingWidth="81.47772979736328">
+               <font>
+                  <Font name="Bernard MT Condensed" size="19.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</Pane>
