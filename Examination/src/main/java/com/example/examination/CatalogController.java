@@ -1,10 +1,12 @@
 package com.example.examination;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import models.db.Database;
 import models.Genre;
 import models.Movie;
@@ -17,7 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,19 +50,36 @@ public class CatalogController {
         String selectedGenre = genreChoiceBox.getValue();
         String selectedCountry = countryChoiceBox.getValue();
 
-        System.out.println(searchTitle);
-
         List<Movie> movieList = Database.search(searchTitle, selectedYear, selectedGenre, selectedCountry);
 
-        VBox cardsContainer = new VBox();
-        cardsContainer.setSpacing(20);
+        if (!movieList.isEmpty()){
+            VBox cardsContainer = new VBox();
+            cardsContainer.setSpacing(30);
+            cardsContainer.setPrefWidth(578);
 
-        for (Movie movie : movieList) {
-            HBox card = createMovieCard(movie);
-            cardsContainer.getChildren().add(card);
+            for (Movie movie : movieList) {
+                HBox card = createMovieCard(movie);
+                cardsContainer.getChildren().add(card);
+            }
+            scrollPaneMovies.setContent(cardsContainer);
         }
+        else{
+            Label notFound = new Label("Ooops! Not found :( ");
+            notFound.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+            ImageView imageView = null;
+            URL imageURL = getClass().getResource("/com/example/examination/filmfinder.png");
+            if (imageURL != null) {
+                imageView = new ImageView(new Image(String.valueOf(imageURL)));
+            } else {
+                imageView = new ImageView(new Image(String.valueOf(getClass().getResource("/image/not-image.png"))));
+            }
+            VBox notFoundContent = new VBox();
+            notFoundContent.getChildren().add(notFound);
+            notFoundContent.getChildren().add(imageView);
 
-        scrollPaneMovies.setContent(cardsContainer);
+            notFoundContent.setPadding(new Insets(80,0,0,170));
+            scrollPaneMovies.setContent(notFoundContent);
+        }
     }
 
     @FXML
@@ -80,7 +99,6 @@ public class CatalogController {
         }
     }
 
-
     public void initialize() {
         List<String> yearsCommands = new ArrayList<>(){};
         yearsCommands.add("Все");
@@ -89,7 +107,6 @@ public class CatalogController {
         ObservableList<String> years = FXCollections.observableArrayList(
                 yearsCommands.toArray(new String[0])
         );
-
 
         List<String> genreCommands = new ArrayList<>(){};
         genreCommands.add("Все");
@@ -115,21 +132,22 @@ public class CatalogController {
 
         List<Movie> movieList = Database.getMovieList();
         VBox cardsContainer = new VBox();
-        cardsContainer.setSpacing(20);
-        cardsContainer.setPrefWidth(580);
+        cardsContainer.setSpacing(30);
+        cardsContainer.setPrefWidth(578);
 
         for (Movie movie : movieList) {
             HBox card = createMovieCard(movie);
+
             cardsContainer.getChildren().add(card);
         }
 
         scrollPaneMovies.setContent(cardsContainer);
     }
 
-
     private HBox createMovieCard(Movie movie) {
         HBox card = new HBox();
         card.setSpacing(10);
+        card.setPadding(new Insets(15,15,15,15));
 
         ImageView imageView = null;
         URL imageURL = getClass().getResource("/image/" + movie.getId() + ".jpg");
@@ -146,16 +164,48 @@ public class CatalogController {
         dataBox.setSpacing(5);
 
         Label titleLabel = new Label(movie.getTitle());
-        titleLabel.setStyle("-fx-font-weight: bold;");
+        titleLabel.setStyle(" -fx-font-weight: bold; -fx-font-size: 18;  ");
 
         Label descriptionLabel = new Label(movie.getDescription());
-        Label yearLabel = new Label("Год: " + Integer.toString(movie.getYear()));
-        Label countryLabel = new Label("Страна: " + movie.getCountry());
+        descriptionLabel.setWrapText(true);
+        descriptionLabel.setMaxWidth(400);
+        descriptionLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-fill: #000000; ");
+
+        Label yearLabel = new Label();
+        Text yearTextPart1 = new Text("Year: ");
+        Text yearTextPart2 = new Text(Integer.toString(movie.getYear()));
+        yearTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; -fx-font-weight: bold;");
+        yearTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; ");
+        yearLabel.setGraphic(new HBox(yearTextPart1, yearTextPart2));
+
+        Label countryLabel = new Label();
+        Text countryTextPart1 = new Text("Country: ");
+        Text countryTextPart2 = new Text(movie.getCountry());
+        countryTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; -fx-font-weight: bold;");
+        countryTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; ");
+        countryLabel.setGraphic(new HBox(countryTextPart1, countryTextPart2));
 
         dataBox.getChildren().addAll(titleLabel, yearLabel, countryLabel, descriptionLabel);
 
-        Button detailsButton = new Button("Подробнее");
-        detailsButton.setOnAction(event -> showDetails(movie)); // Метод для обработки нажатия на кнопку
+
+        StackPane stackPane = new StackPane();
+        Text detailsText = new Text("Details");
+        detailsText.setStyle("-fx-font-weight: bold;");
+
+        Button detailsButton = new Button();
+        detailsButton.setGraphic(detailsText);
+
+        stackPane.getChildren().add(detailsButton);
+
+        detailsButton.setLayoutX(-15);
+        detailsButton.setLayoutY(5);
+        detailsButton.setTranslateX(-15);
+        detailsButton.setTranslateY(5);
+        detailsButton.setMinWidth(100);
+        detailsButton.setMinHeight(40);
+        detailsButton.setStyle("-fx-background-color: #ead2a0;");
+
+        detailsButton.setOnAction(event -> showDetails(movie));
 
         card.getChildren().addAll(imageView, dataBox, detailsButton);
 
@@ -168,7 +218,7 @@ public class CatalogController {
             Parent root = loader.load();
 
             DetailController detailController = loader.getController();
-            detailController.setMovie(movie); // Передаем фильм в контроллер деталей
+            detailController.setMovie(movie);
 
             // Открываем новое окно
             Stage stage = new Stage();
