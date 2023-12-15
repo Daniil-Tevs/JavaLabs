@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 public class Database {
@@ -106,6 +108,27 @@ public class Database {
         return movieList;
     }
 
+    public static List<Movie> getMovieListByMood(String mood) {
+        initConnection();
+
+        List<Movie> movieList = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            String query = "SELECT DISTINCT m.id, m.title, m.description, m.duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.country c on c.id = m.country_id LEFT JOIN movie_genre mg on m.id = mg.movie_id LEFT JOIN mood mo on mo.id = mg.genre_id where LOWER(mo.title) like '%" + mood.toLowerCase() + "%'";
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+//                    System.out.println(resultSet.get());
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return movieList;
+    }
+
+
+
     public static List<Movie> getMovieListByGenres(String genreFirst, String genreSecond) {
         initConnection();
 
@@ -192,6 +215,43 @@ public class Database {
         return movieList;
     }
 
+    private static int getCurrentSeason() {
+        LocalDate currentDate = LocalDate.now();
+        int currentMonth = currentDate.getMonthValue();
+
+        if (currentMonth >= 3 && currentMonth <= 5) {
+            return 2; // Spring (март, апрель, май)
+        } else if (currentMonth >= 6 && currentMonth <= 8) {
+            return 3; // Summer (июнь, июль, август)
+        } else if (currentMonth >= 9 && currentMonth <= 11) {
+            return 4; // Autumn (сентябрь, октябрь, ноябрь)
+        } else {
+            return 1; // Winter (декабрь, январь, февраль)
+        }
+    }
+
+
+    public static Movie getMovieSeason() {
+        initConnection();
+
+        Movie movie = null;
+        int season = getCurrentSeason();
+        List<Movie> movieList = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            String query = " SELECT movies.id as id, movies.title as title, description, duration, year, c.title as country FROM movies Left Join movies.country c on c.id = movies.country_id where movies.id in (select distinct movie_id from movie_season where season_number = " + season + " )";
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(movieList.size());
+        return movieList.get(randomIndex);
+    }
 
     public static List<String> getYearList() {
         initConnection();
@@ -211,26 +271,23 @@ public class Database {
         return yearList;
     }
 
+    public static List<String> getMoodList() {
+        initConnection();
 
-//    public static void main(String[] args) {
+        List<String> moodList = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            String query = "select title from mood";
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    moodList.add(resultSet.getString("title"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-//        Map<String, List<Movie>> map = getMovieByGenre();
-//        for (String key: map.keySet()) {
-//            System.out.println(key);
-//            for (Movie movie:map.get(key)) {
-//                System.out.println(movie.getTitle());
-//            }
-//
-//        }
-
-//        for (Movie movie : getMovieListByGenre("drama")) {
-//            System.out.println(movie.getTitle());
-//        }
-//
-//        for (Movie movie : getMovieListByTitle("ie3")) {
-//            System.out.println(movie.getTitle());
-//        }
+        return moodList;
+    }
 
 
-//    }
 }

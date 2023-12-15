@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.animation.Timeline;
 import java.io.IOException;
@@ -19,6 +20,8 @@ import javafx.scene.text.Text;
 public class MainController {
     @FXML
     private Text animatedText;
+
+
     public void initialize() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0), new KeyValue(animatedText.textProperty(), "Find the film that suits your mood")),

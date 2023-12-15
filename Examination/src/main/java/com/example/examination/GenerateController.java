@@ -61,6 +61,8 @@ public class GenerateController {
 
     @FXML
     protected void onGenerateMovie() throws IOException {
+        if(firstGenre.getText() == null || firstGenre.getText().isEmpty() || secondGenre.getText() == null || secondGenre.getText().isEmpty())
+            return;
         List<Movie> generatedMovies = Database.getMovieListByGenres(firstGenre.getText(), secondGenre.getText());
 
         for (Movie m : generatedMovies) {
