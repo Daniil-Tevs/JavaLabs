@@ -38,7 +38,7 @@ public class Database {
             try (ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
 //                    System.out.println(resultSet.get());
-                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"),resultSet.getInt("year"), resultSet.getString("country")));
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
                 }
             }
         } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class Database {
                 while (resultSet.next()) {
                     if (!mapMovieByGenre.containsKey(resultSet.getString("genre")))
                         mapMovieByGenre.put(resultSet.getString("genre"), new ArrayList<>());
-                    mapMovieByGenre.get(resultSet.getString("genre")).add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"),resultSet.getInt("year"), resultSet.getString("country")));
+                    mapMovieByGenre.get(resultSet.getString("genre")).add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
                 }
             }
         } catch (SQLException e) {
@@ -96,7 +96,43 @@ public class Database {
             try (ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
 //                    System.out.println(resultSet.get());
-                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"),resultSet.getInt("year"), resultSet.getString("country")));
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return movieList;
+    }
+
+    public static List<Movie> getMovieListByGenres(List<String> genreList) {
+        initConnection();
+
+        List<Movie> movieList = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            String query = "SELECT DISTINCT m.id, m.title, m.description, m.duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.country c on c.id = m.country_id LEFT JOIN movie_genre mg on m.id = mg.movie_id LEFT JOIN genre g on g.id = mg.genre_id ";
+            if (genreList.isEmpty())
+                return movieList;
+
+
+            query += " where ";
+            boolean isFirst = true;
+            for (String genre : genreList) {
+                if (isFirst) {
+                    isFirst = false;
+                    query += " LOWER(g.title) like '%" + genre.toLowerCase() + "%' ";
+                } else {
+                    query += " OR LOWER(g.title) like '%" + genre.toLowerCase() + "%' ";
+                }
+            }
+
+            System.out.println(query);
+
+            try (ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+//                    System.out.println(resultSet.get());
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
                 }
             }
         } catch (SQLException e) {
@@ -114,7 +150,7 @@ public class Database {
             String query = "SELECT movies.id as id, movies.title as title, description, duration, year , c.title as country FROM movies LEFT JOIN movies.country c on c.id = movies.country_id WHERE Lower(movies.title) like '%Один%'" + title.toLowerCase() + "%'";
             try (ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
-                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"),resultSet.getInt("year"), resultSet.getString("country")));
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
                 }
             }
         } catch (SQLException e) {
@@ -148,23 +184,23 @@ public class Database {
         List<Movie> movieList = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             String query = "SELECT DISTINCT m.id as id, m.title as title, m.description as description , m.duration as duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.movie_genre mg on m.id = mg.movie_id LEFT JOIN genre g on g.id = mg.genre_id LEFT JOIN movies.country c on c.id = m.country_id WHERE m.id > 0 ";
-            if(!Objects.equals(title, ""))
+            if (!Objects.equals(title, ""))
                 query += " AND LOWER(m.title) like '%" + title.toLowerCase() + "%' ";
 
-            if(year != null && !year.equals("Все"))
+            if (year != null && !year.equals("Все"))
                 query += " AND m.year = " + Integer.parseInt(year);
 
-            if(genre != null && !genre.equals("Все"))
-                query += " AND LOWER(g.title) like '%" + genre.toLowerCase() +"%' ";
+            if (genre != null && !genre.equals("Все"))
+                query += " AND LOWER(g.title) like '%" + genre.toLowerCase() + "%' ";
 
-            if(country != null && !country.equals("Все"))
-                query += " AND LOWER(c.title) like '%" + country.toLowerCase() +"%' ";
+            if (country != null && !country.equals("Все"))
+                query += " AND LOWER(c.title) like '%" + country.toLowerCase() + "%' ";
 
             System.out.println(query);
 
             try (ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
-                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"),resultSet.getInt("year"), resultSet.getString("country")));
+                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
                 }
             }
         } catch (SQLException e) {
@@ -173,6 +209,7 @@ public class Database {
 
         return movieList;
     }
+
 
     public static List<String> getYearList() {
         initConnection();
@@ -191,7 +228,6 @@ public class Database {
 
         return yearList;
     }
-
 
 
 //    public static void main(String[] args) {
