@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.CatchMoodController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="781.0" style="-fx-background-color: #1b1b1b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.CatchMoodController">
    <children>
-      <Pane fx:id="categoryPane" layoutX="370.0" prefHeight="650.0" prefWidth="210.0" style="-fx-background-color: #2e2e2e;">
+      <Pane fx:id="categoryPane" layoutX="571.0" prefHeight="650.0" prefWidth="210.0" style="-fx-background-color: #2e2e2e;">
          <children>
             <Text fill="#c19664" layoutX="21.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
                <font>
@@ -28,19 +28,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#c19664" layoutX="97.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch the mood">
+      <Text fill="#c19664" layoutX="190.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch the mood">
          <font>
             <Font name="Algerian" size="24.0" />
          </font>
       </Text>
-      <Text fill="#f3f2d6" layoutX="33.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find the category of film which suits your mood right now" wrappingWidth="320.81636962890616">
+      <Text fill="#f3f2d6" layoutX="126.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find the category of film which suits your mood right now" wrappingWidth="320.81636962890616">
          <font>
             <Font name="Bernard MT Condensed" size="14.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="moviesScroll" layoutX="7.0" layoutY="88.0" prefHeight="561.0" prefWidth="363.0">
+      <ScrollPane fx:id="moviesScroll" layoutX="7.0" layoutY="88.0" prefHeight="561.0" prefWidth="564.0" style="-fx-background-color: #1b1b1b;">
          <content>
-            <VBox fx:id="moviesBox" prefHeight="557.0" prefWidth="360.0" />
+            <VBox fx:id="moviesBox" prefHeight="558.0" prefWidth="565.0" style="-fx-background-color: #1b1b1b;" />
          </content>
       </ScrollPane>
    </children>

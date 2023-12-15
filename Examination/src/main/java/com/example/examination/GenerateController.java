@@ -84,7 +84,7 @@ public class GenerateController {
                 url = String.valueOf(imageURL);
 
 
-            controller.setMovieData(url, movie.getTitle(), movie.getDescription(), Integer.toString(movie.getYear()), movie.getCountry());
+            controller.setMovieData(url, movie);
 
             moviesBox.getChildren().add(cartMovie);
         }

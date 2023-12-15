@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 import models.db.Database;
 import models.Genre;
 import models.Movie;
@@ -148,6 +149,7 @@ public class CatalogController {
         HBox card = new HBox();
         card.setSpacing(10);
         card.setPadding(new Insets(15,15,15,15));
+        card.setStyle("-fx-background-color: #2e2e2e;");
 
         ImageView imageView = null;
         URL imageURL = getClass().getResource("/image/" + movie.getId() + ".jpg");
@@ -164,25 +166,26 @@ public class CatalogController {
         dataBox.setSpacing(5);
 
         Label titleLabel = new Label(movie.getTitle());
-        titleLabel.setStyle(" -fx-font-weight: bold; -fx-font-size: 18;  ");
+        titleLabel.setStyle(" -fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #c19664; ");
 
         Label descriptionLabel = new Label(movie.getDescription());
         descriptionLabel.setWrapText(true);
         descriptionLabel.setMaxWidth(400);
-        descriptionLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-fill: #000000; ");
+        descriptionLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-text-fill: #f3f2d6; ");
 
         Label yearLabel = new Label();
         Text yearTextPart1 = new Text("Year: ");
         Text yearTextPart2 = new Text(Integer.toString(movie.getYear()));
-        yearTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; -fx-font-weight: bold;");
-        yearTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; ");
+        yearTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: #ffedcd; ");
+        yearTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #f3f2d6;");
+
         yearLabel.setGraphic(new HBox(yearTextPart1, yearTextPart2));
 
         Label countryLabel = new Label();
         Text countryTextPart1 = new Text("Country: ");
         Text countryTextPart2 = new Text(movie.getCountry());
-        countryTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; -fx-font-weight: bold;");
-        countryTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #000000; ");
+        countryTextPart1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px;  -fx-font-weight: bold; -fx-fill: #ffedcd; ");
+        countryTextPart2.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-fill: #f3f2d6;  ");
         countryLabel.setGraphic(new HBox(countryTextPart1, countryTextPart2));
 
         dataBox.getChildren().addAll(titleLabel, yearLabel, countryLabel, descriptionLabel);
@@ -203,28 +206,27 @@ public class CatalogController {
         detailsButton.setTranslateY(5);
         detailsButton.setMinWidth(100);
         detailsButton.setMinHeight(40);
-        detailsButton.setStyle("-fx-background-color: #ead2a0;");
+        detailsButton.setStyle("-fx-background-color: #ead2a0; -fx-cursor: hand;");
 
-        detailsButton.setOnAction(event -> showDetails(movie));
+
+        detailsButton.setOnAction(event -> showDetails(movie,(Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()));
 
         card.getChildren().addAll(imageView, dataBox, detailsButton);
 
         return card;
     }
 
-    private void showDetails(Movie movie) {
+    private void showDetails(Movie movie, Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("detail_page.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/examination/detail_card.fxml"));
             Parent root = loader.load();
 
-            DetailController detailController = loader.getController();
-            detailController.setMovie(movie);
+            DetailCardController detailsController = loader.getController();
 
-            // Открываем новое окно
-            Stage stage = new Stage();
-            stage.setTitle("Детали фильма");
-            stage.setScene(new Scene(root));
-            stage.show();
+            detailsController.setMovieDetails(movie);
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }

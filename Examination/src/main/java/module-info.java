@@ -3,6 +3,7 @@ module com.example.examination {
     requires javafx.fxml;
     requires java.sql;
     requires mysql.connector.java;
+    requires javafx.media;
 
 
     opens com.example.examination to javafx.fxml;

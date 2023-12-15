@@ -72,7 +72,9 @@ public class CatchMoodController{
                 url = String.valueOf(imageURL);
 
 
-            controller.setMovieData(url, movie.getTitle(), movie.getDescription(), Integer.toString(movie.getYear()), movie.getCountry());
+            controller.setMovieData(url, movie);
+
+            cartMovie.setMaxWidth(10);
 
             moviesBox.getChildren().add(cartMovie);
         }
