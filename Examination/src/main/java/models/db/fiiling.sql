@@ -1,34 +1,63 @@
 use movies;
 
 insert ignore into country (title)
-values ('США'),
-       ('Великобритания'),
-       ('Турция'),
-       ('Сербия');
+values ('USA'),
+       ('Great Britain'),
+       ('Turkey'),
+       ('Serbia');
 
 insert ignore into genre (title)
-values ('Драма'),
-       ('Комедия');
+values ('Drama'),
+       ('Comedy'),
+       ('Triller'),
+       ('Horror'),
+       ('Fantastic');
+
+insert ignore into mood (title)
+values ('New Year'),
+       ('Birthday'),
+       ('Autumn'),
+       ('Summer'),
+       ('Spring'),
+       ('Winter'),
+       ('Halloween'),
+       ('Christmas');
 
 insert ignore into movies (title, description, duration, year, country_id)
-values ('Мегаладон',
-        'Пол и его семья собираются провести отпуск в райском местечке на побережье. К их удивлению, живописный и дружелюбный поселок покинут и разрушен. По ацтекским легендам, в местных водах обитает последний мегалодон — Черный демон. Он ревностно защищает природу от вторжения людей, уничтожая все на своем пути. Отправившись на прибрежную платформу в поисках ответов, семья оказывается в ловушке. И теперь Полу нужно найти способ спасти своих близких.',
+values ('Megalodon',
+        'Paul and his family are planning a holiday in a coastal paradise. To their surprise, the picturesque and friendly village is abandoned and destroyed. According to Aztec legends, the last megalodon, the Black Demon, lives in local waters. He zealously protects nature from human invasion, destroying everything in his path. Traveling to a coastal platform in search of answers, the family finds themselves trapped. And now Paul needs to find a way to save his loved ones.',
         100, 2000, 1),
-       ('Один дома',
-        'Американское семейство отправляется из Чикаго в Европу, но в спешке сборов бестолковые родители забывают дома... одного из своих детей. Юное создание, однако, не теряется и демонстрирует чудеса изобретательности. И когда в дом залезают грабители, им приходится не раз пожалеть о встрече с милым крошкой.',
+       ('Home alone',
+        'An American family leaves Chicago for Europe, but in the rush to get ready, clueless parents forget at home... one of their children. The young creature, however, is not lost and demonstrates miracles of ingenuity. And when robbers break into the house, they have to regret meeting the cute baby more than once.',
         200, 2004, 2),
-       ('Великолепный век',
-        'Сюжет основан на реальных событиях, произошедших во времена правления султана Сулеймана I, и рассказывает о периоде жизни девушки Александры, взятой в плен турками и названной Хюррем. Позже она стала первой официальной женой Сулеймана, но для этого ей пришлось пройти сложный путь…',
+       ('Magnificent century',
+        'The plot is based on real events that occurred during the reign of Sultan Suleiman I, and tells about the period in the life of the girl Alexandra, who was captured by the Turks and named Hurrem. Later she became the first official wife of Suleiman, but for this she had to go through a difficult path...',
         400, 2015, 3),
-       ('Синистер',
-        'Автор детективов с семьёй переезжает в небольшой городок и селится в доме, где год назад развернулась леденящая душу трагедия — были убиты все жильцы. Писатель случайно находит видеозаписи, которые являются ключом к тайне преступления. Но ничто не дается даром: в доме начинают происходить жуткие вещи, и теперь под угрозой оказывается жизнь его близких.',
+       ('Sinister',
+        'A detective author and his family move to a small town and settle in a house where a chilling tragedy unfolded a year ago - all the residents were killed. The writer accidentally finds video recordings that are the key to the mystery of the crime. But nothing comes for free: terrible things begin to happen in the house, and now the lives of his loved ones are under threat.',
         400, 2016, 4),
-       ('Гарри Поттер и философский камень',
-        'Жизнь десятилетнего Гарри Поттера нельзя назвать сладкой: родители умерли, едва ему исполнился год, а от дяди и тёти, взявших сироту на воспитание, достаются лишь тычки да подзатыльники. Но в одиннадцатый день рождения Гарри всё меняется. Странный гость, неожиданно появившийся на пороге, приносит письмо, из которого мальчик узнаёт, что на самом деле он - волшебник и зачислен в школу магии под названием Хогвартс. А уже через пару недель Гарри будет мчаться в поезде Хогвартс-экспресс навстречу новой жизни, где его ждут невероятные приключения, верные друзья и самое главное — ключ к разгадке тайны смерти его родителей.',
+       ('Harry Potter',
+        'The life of ten-year-old Harry Potter cannot be called sweet: his parents died when he was barely a year old, and from his uncle and aunt, who took the orphan into their upbringing, they only get pokes and slaps on the head. But on Harry eleventh birthday, everything changes. A strange guest who unexpectedly appears on the doorstep brings a letter from which the boy learns that he is in fact a wizard and is enrolled in a school of magic called Hogwarts. And in a couple of weeks, Harry will be racing on the Hogwarts Express train towards a new life, where incredible adventures, true friends and, most importantly, the key to solving the mystery of the death of his parents await him.',
         500, 2009, 2),
-       ('movie6', 'descriiiiiiption6', 600, 2006, 2);
+       ('The Walking Dead', 'This an American post-apocalyptic television series developed by Frank Darabont and based on the comic book series of the same name created by Robert Kirkman, Tony Moore and Charlie Adlard. The plot centers on a small group of people trying to survive a zombie apocalypse.', 1300, 2006, 2);
 
 insert ignore into movie_genre(movie_id, genre_id)
 values (1, 1),
        (1, 2),
-       (2, 1);
+       (2, 3),
+       (3, 4),
+       (4, 5),
+       (2, 4),
+       (2, 5),
+       (5, 3);
+
+insert ignore into movie_mood(movie_id, mood_id)
+values (1, 1),
+       (1, 2),
+       (2, 3),
+       (3, 4),
+       (4, 5),
+       (2, 4),
+       (2, 5),
+       (5, 3);
+
