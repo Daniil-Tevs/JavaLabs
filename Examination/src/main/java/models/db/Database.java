@@ -92,7 +92,7 @@ public class Database {
 
         List<Movie> movieList = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            String query = "SELECT DISTINCT m.id, m.title, m.description, m.duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.country c on c.id = m.country_id LEFT JOIN movie_genre mg on m.id = mg.movie_id LEFT JOIN genre g on g.id = mg.genre_id where g.title = '" + genre + "'";
+            String query = "SELECT DISTINCT m.id, m.title, m.description, m.duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.country c on c.id = m.country_id LEFT JOIN movie_genre mg on m.id = mg.movie_id LEFT JOIN genre g on g.id = mg.genre_id where LOWER(g.title) like '%" + genre.toLowerCase() + "%'";
             try (ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
 //                    System.out.println(resultSet.get());
@@ -106,40 +106,22 @@ public class Database {
         return movieList;
     }
 
-    public static List<Movie> getMovieListByGenres(List<String> genreList) {
+    public static List<Movie> getMovieListByGenres(String genreFirst, String genreSecond) {
         initConnection();
 
-        List<Movie> movieList = new ArrayList<>();
-        try (Statement statement = connection.createStatement()) {
-            String query = "SELECT DISTINCT m.id, m.title, m.description, m.duration, m.year as year, c.title as country FROM movies m LEFT JOIN movies.country c on c.id = m.country_id LEFT JOIN movie_genre mg on m.id = mg.movie_id LEFT JOIN genre g on g.id = mg.genre_id ";
-            if (genreList.isEmpty())
-                return movieList;
+        List<Movie> moviesByFirstGenre = getMovieListByGenre(genreFirst);
+        List<Movie> moviesBySecondGenre = getMovieListByGenre(genreSecond);
 
+        Map<Integer,Movie> map = new HashMap<>();
 
-            query += " where ";
-            boolean isFirst = true;
-            for (String genre : genreList) {
-                if (isFirst) {
-                    isFirst = false;
-                    query += " LOWER(g.title) like '%" + genre.toLowerCase() + "%' ";
-                } else {
-                    query += " OR LOWER(g.title) like '%" + genre.toLowerCase() + "%' ";
-                }
+        for (Movie movie2:moviesBySecondGenre) {
+            for (Movie movie1:moviesByFirstGenre) {
+                if(movie1.getId() == movie2.getId() && !map.containsKey(movie1.getId()))
+                    map.put(movie1.getId(), movie1);
             }
-
-            System.out.println(query);
-
-            try (ResultSet resultSet = statement.executeQuery(query)) {
-                while (resultSet.next()) {
-//                    System.out.println(resultSet.get());
-                    movieList.add(new Movie(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description"), resultSet.getInt("duration"), resultSet.getInt("year"), resultSet.getString("country")));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
 
-        return movieList;
+        return new ArrayList<>(map.values());
     }
 
     public static List<Movie> getMovieListByTitle(String title) {

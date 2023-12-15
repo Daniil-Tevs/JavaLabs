@@ -61,13 +61,9 @@ public class GenerateController {
 
     @FXML
     protected void onGenerateMovie() throws IOException {
-        List<String> genreList = new ArrayList<>();
-        genreList.add(firstGenre.getText());
-        genreList.add(secondGenre.getText());
+        List<Movie> generatedMovies = Database.getMovieListByGenres(firstGenre.getText(), secondGenre.getText());
 
-        List<Movie> generatedMovies = Database.getMovieListByGenres(genreList);
-
-        for (Movie m:generatedMovies) {
+        for (Movie m : generatedMovies) {
             System.out.println(m.getTitle());
         }
 
