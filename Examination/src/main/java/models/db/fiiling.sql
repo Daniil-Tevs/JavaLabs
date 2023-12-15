@@ -11,7 +11,8 @@ values ('Drama'),
        ('Comedy'),
        ('Triller'),
        ('Horror'),
-       ('Fantastic');
+       ('Fantastic'),
+       ('History');
 
 insert ignore into mood (title)
 values ('New Year'),
@@ -37,27 +38,44 @@ values ('Megalodon',
         'A detective author and his family move to a small town and settle in a house where a chilling tragedy unfolded a year ago - all the residents were killed. The writer accidentally finds video recordings that are the key to the mystery of the crime. But nothing comes for free: terrible things begin to happen in the house, and now the lives of his loved ones are under threat.',
         400, 2016, 4),
        ('Harry Potter',
-        'The life of ten-year-old Harry Potter cannot be called sweet: his parents died when he was barely a year old, and from his uncle and aunt, who took the orphan into their upbringing, they only get pokes and slaps on the head. But on Harry eleventh birthday, everything changes. A strange guest who unexpectedly appears on the doorstep brings a letter from which the boy learns that he is in fact a wizard and is enrolled in a school of magic called Hogwarts. And in a couple of weeks, Harry will be racing on the Hogwarts Express train towards a new life, where incredible adventures, true friends and, most importantly, the key to solving the mystery of the death of his parents await him.',
+        'The life of ten-year-old Harry Potter cannot be called sweet: his parents died when he was barely a year old, and from his uncle and aunt, who took the orphan into their upbringing, they only get pokes and slaps on the head. But on Harry eleventh birthday, everything changes. A strange guest who unexpectedly appears on the doorstep brings a letter from which the boy learns that he is in fact a wizard and is enrolled in a school of magic called Hogwarts. ',
         500, 2009, 2),
-       ('The Walking Dead', 'This an American post-apocalyptic television series developed by Frank Darabont and based on the comic book series of the same name created by Robert Kirkman, Tony Moore and Charlie Adlard. The plot centers on a small group of people trying to survive a zombie apocalypse.', 1300, 2006, 2);
+       ('The Walking Dead',
+        'This an American post-apocalyptic television series developed by Frank Darabont and based on the comic book series of the same name created by Robert Kirkman, Tony Moore and Charlie Adlard. The plot centers on a small group of people trying to survive a zombie apocalypse.',
+        1300, 2006, 2);
 
 insert ignore into movie_genre(movie_id, genre_id)
-values (1, 1),
-       (1, 2),
-       (2, 3),
-       (3, 4),
-       (4, 5),
-       (2, 4),
-       (2, 5),
-       (5, 3);
+values (1, 3),
+       (1, 4),
+       (1, 5),
+       (2, 1),
+       (2, 2),
+       (3, 1),
+       (3, 6),
+       (4, 1),
+       (4, 3),
+       (4, 4),
+       (5, 5),
+       (6, 1),
+       (6, 4);
 
 insert ignore into movie_mood(movie_id, mood_id)
-values (1, 1),
-       (1, 2),
-       (2, 3),
-       (3, 4),
-       (4, 5),
-       (2, 4),
+values (1, 4),
+       (2, 1),
+       (2, 6),
+       (2, 8),
+       (3, 3),
+       (4, 3),
+       (5, 2),
+       (6, 7),
        (2, 5),
        (5, 3);
 
+
+insert ignore into movie_season (season_number, movie_id)
+values (1, 2),
+       (1, 5),
+       (2, 3),
+       (3, 1),
+       (4, 4),
+       (4, 6);

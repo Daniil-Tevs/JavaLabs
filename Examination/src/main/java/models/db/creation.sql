@@ -56,3 +56,12 @@ create table if not exists movies.movie_mood
 );
 
 
+create table if not exists movies.movie_season
+(
+    id       int not null auto_increment,
+    season_number int not null,
+    movie_id int not null,
+    primary key (id),
+    foreign key fk_movie_id (movie_id) references movies (id)
+);
+
