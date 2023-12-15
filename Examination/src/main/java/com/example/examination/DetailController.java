@@ -26,12 +26,12 @@ public class DetailController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Инициализация вашего контроллера деталей
+
     }
 
     public void setMovie(Movie movie) {
         this.movie = movie;
-        updateLabels(); // Обновляем отображаемые метки
+        updateLabels();
     }
 
     private void updateLabels() {
@@ -39,5 +39,6 @@ public class DetailController implements Initializable {
         yearLabel.setText("Год: " + Integer.toString(movie.getYear()));
         countryLabel.setText("Страна: " + movie.getCountry());
         descriptionLabel.setText(movie.getDescription());
+
     }
 }

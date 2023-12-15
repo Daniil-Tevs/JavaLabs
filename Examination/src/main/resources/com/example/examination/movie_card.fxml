@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.MovieCardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="600.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.MovieCardController">
    <children>
-      <ImageView fx:id="movieImage" fitHeight="199.0" fitWidth="211.0" layoutX="25.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="movieTitle" layoutX="263.0" layoutY="22.0" prefHeight="34.0" prefWidth="283.0" text="Label" />
-      <TextArea fx:id="movieDescription" layoutX="263.0" layoutY="112.0" prefHeight="72.0" prefWidth="310.0" />
-      <Text fx:id="movieYear" layoutX="263.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.13677978515625" />
-      <Button layoutX="263.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Button" />
-      <Text fx:id="movieCountry" layoutX="263.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.13677978515625" />
+      <ImageView fx:id="movieImage" fitHeight="199.0" fitWidth="211.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="movieTitle" layoutX="263.0" layoutY="5.0" prefHeight="34.0" prefWidth="196.0" text="Label" textFill="#f9e8b4">
+         <font>
+            <Font name="PT Sans" size="24.0" />
+         </font></Label>
+      <TextArea fx:id="movieDescription" layoutX="263.0" layoutY="112.0" prefHeight="72.0" prefWidth="250.0" style="-fx-control-inner-background: #2e2e2e; -fx-text-fill: #f3f2d6; -fx-border-color: #2e2e2e;" wrapText="true" />
+      <Text fx:id="movieYear" fill="#ffedcd" layoutX="263.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="53.3367919921875">
+         <font>
+            <Font name="Bernard MT Condensed" size="18.0" />
+         </font></Text>
+      <Button fx:id="showMovie" layoutX="263.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ead2a0;" text="Details">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Text fx:id="movieCountry" fill="#ffedcd" layoutX="263.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="154.20001220703125">
+         <font>
+            <Font name="Bernard MT Condensed" size="18.0" />
+         </font></Text>
    </children>
 </Pane>

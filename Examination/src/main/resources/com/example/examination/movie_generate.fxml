@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import java.net.URL?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.examination.GenerateController">
    <children>
       <Pane prefHeight="325.0" prefWidth="580.0" style="-fx-background-color: #1b1b1b;">
@@ -64,9 +65,12 @@
             <Font name="Algerian" size="24.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="moviesScroll" layoutY="377.0" prefHeight="276.0" prefWidth="580.0">
+      <ScrollPane fx:id="moviesScroll" layoutY="363.0" prefHeight="290.0" prefWidth="580.0">
+         <stylesheets>
+            <URL value="@styles.css" />
+         </stylesheets>
          <content>
-            <VBox fx:id="moviesBox" prefHeight="281.0" prefWidth="574.0" />
+            <VBox fx:id="moviesBox" maxWidth="570.0" prefHeight="290.0" prefWidth="570.0" style="-fx-background-color: #2e2e2e; -fx-border-color: #2e2e2e;" />
          </content>
       </ScrollPane>
    </children>

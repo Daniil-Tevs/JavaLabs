@@ -50,7 +50,7 @@
                   <Font name="Bernard MT Condensed" size="14.0" />
                </font>
             </Text>
-            <Button layoutX="290.0" layoutY="280.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: #ead2a0;" text="I want to see!">
+            <Button fx:id="movieSeasonInterest" layoutX="290.0" layoutY="280.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: #ead2a0;" text="I want to see!">
                <font>
                   <Font name="Baskerville Old Face" size="14.0" />
                </font>

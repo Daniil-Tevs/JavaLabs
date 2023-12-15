@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -25,6 +26,8 @@ public class SecondController {
 
     @FXML
     public ImageView movieSeasonImage;
+    @FXML
+    public Button movieSeasonInterest;
     @FXML
     public Text movieSeasonTitle;
     @FXML
@@ -113,6 +116,25 @@ public class SecondController {
         }
         movieSeasonImage.setImage(image);
         movieSeasonTitle.setText(movie.getTitle());
-        movieSeasonDescription.setText(movie.getDescription());
+        movieSeasonDescription.setText(movie.getDescription().substring(0, Math.min(movie.getDescription().length(), 200)));
+
+        movieSeasonInterest.setOnAction(event -> showDetails(movie,(Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()));
+
+    }
+
+    private void showDetails(Movie movie, Stage primaryStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/examination/detail_card.fxml"));
+            Parent root = loader.load();
+
+            DetailCardController detailsController = loader.getController();
+
+            detailsController.setMovieDetails(movie);
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
